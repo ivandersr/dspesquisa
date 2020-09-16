@@ -1,27 +1,14 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { Link } from 'react-router-dom';
+import Filters from '../../components/Filters';
 
 import api from '../../services/api';
 import { formatDate } from '../../utils/formatDate';
 
 import Pagination from './Pagination';
 
+import { RecordsResponse } from '../../@types';
+
 import './styles.css';
-
-type Record = {
-  id: number;
-  moment: string;
-  name: string;
-  age: number;
-  gamePlatform: 'PC' | 'XBOX' | 'PLAYSTATION';
-  gameTitle: string;
-  genreName: string;
-}
-
-type RecordsResponse = {
-  content: Record[];
-  totalPages: number;
-}
 
 const Records = () => {
 
@@ -45,13 +32,8 @@ const Records = () => {
 
   return (
     <div className='page-container'>
-      <div className='filters-container records-actions'>
-        <Link to='/charts'>
-          <button className='action-filters'>
-            VER GRÁFICOS
-          </button>
-        </Link>
-      </div>
+      <Filters link='/charts' linkText='VER GRÁFICOS'/>
+      
       <table className='records-table' cellPadding='0' cellSpacing='0'>
         <thead>
           <tr>
